@@ -50,9 +50,9 @@ Goal: a running FastAPI service with a migrated Supabase schema.
   - [x] generated `tsvector` column on chunks
   - [x] HNSW index (vector) + GIN index (full-text)
   - [x] RLS policies (users see only their own chats)
-- [] `uv run alembic upgrade head` against Supabase direct connection
-- [] `app/database/supabase.py` — user-scoped and service-role clients
-- [] Verify: `uv run uvicorn app.main:app --reload` → health check returns 200
+- [x] `uv run alembic upgrade head` against Supabase direct connection
+- [x] `app/database/supabase.py` — user-scoped and service-role clients
+- [x] Verify: `uv run uvicorn app.main:app --reload` → health check returns 200
 
 ---
 
