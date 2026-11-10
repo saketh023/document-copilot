@@ -62,18 +62,24 @@ Goal: analysts can sign in with email; backend rejects unauthenticated requests.
 
 **Backend**
 
-- [] `app/auth/dependencies.py` — verify `Authorization: Bearer <supabase_jwt>`, expose `get_current_user`
-- [] Reject missing/expired tokens with `401` before any chat or retrieval work
+- [x] `app/auth/dependencies.py` — verify `Authorization: Bearer <supabase_jwt>`, expose `get_current_user`
+- [x] Reject missing/expired tokens with `401` before any chat or retrieval work (covered on `/auth/me`; apply the dependency to future chat/retrieval routes)
 
 **Frontend**
 
-- [] Scaffold Vite + React + TypeScript + Tailwind + shadcn ([frontend-setup](guides/frontend-setup.md))
-- [] `src/lib/env.ts` — validate `VITE_API_BASE_URL`, `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`
-- [] `src/lib/supabase.ts` — browser Supabase client
-- [] `src/lib/http.ts` + `src/lib/api.ts` — fetch wrapper with automatic bearer token
-- [] Sign-in / sign-up pages (email only, no SSO)
-- [] Protected routes — redirect unauthenticated users to login
-- [] Verify: sign up, sign in, token reaches backend on a test authenticated endpoint
+- [x] Scaffold Vite + React + TypeScript + Tailwind + shadcn ([frontend-setup](guides/frontend-setup.md))
+- [x] `src/lib/env.ts` — validate `VITE_API_BASE_URL`, `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`
+- [x] `src/lib/supabase.ts` — browser Supabase client
+- [x] `src/lib/http.ts` + `src/lib/api.ts` — fetch wrapper with automatic bearer token
+- [x] Sign-in / sign-up pages (email only, no SSO)
+- [x] Protected routes — redirect unauthenticated users to login
+- [x] Add Alembic migration to provision `public.users` on signup and backfill existing accounts (apply to Supabase before testing)
+- [x] `GET /auth/me` verifies the bearer token and checks the matching application user; workspace displays the result
+- [x] Verify: sign up, sign in, token reaches backend on a test authenticated endpoint
+- [x] `/auth/me` tests: valid identity, missing/invalid/expired tokens, and missing application-user row
+- [x] Live local API: `/health` returns `200`; `/auth/me` rejects missing and invalid tokens with `401`
+- [x] Supabase: migration `20261110_0002` applied; current test account has matching Auth and application-user rows
+- [x] Browser: user confirmed signing out and signing back in; screenshot shows "Your account is verified and ready" from the authenticated backend check
 
 ---
 

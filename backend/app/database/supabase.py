@@ -1,4 +1,4 @@
-from collections.abc import AsyncIterator
+from collections.abc import AsyncGenerator
 from contextlib import asynccontextmanager
 
 from httpx import AsyncClient as AsyncHttpClient
@@ -8,7 +8,7 @@ from app.config import settings
 
 
 @asynccontextmanager
-async def user_client(access_token: str) -> AsyncIterator[AsyncClient]:
+async def user_client(access_token: str) -> AsyncGenerator[AsyncClient]:
     """Use a verified user's raw access token for RLS-scoped operations."""
     if not access_token.strip():
         raise ValueError("A user access token is required")
@@ -28,7 +28,7 @@ async def user_client(access_token: str) -> AsyncIterator[AsyncClient]:
 
 
 @asynccontextmanager
-async def service_role_client() -> AsyncIterator[AsyncClient]:
+async def service_role_client() -> AsyncGenerator[AsyncClient]:
     """Use privileged backend access; callers must enforce authorization."""
     async with AsyncHttpClient() as http_client:
         client = await acreate_client(
